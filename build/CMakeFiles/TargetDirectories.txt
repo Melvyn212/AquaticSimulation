@@ -1,0 +1,3 @@
+/AquaticSimulation/build/CMakeFiles/rebuild_cache.dir
+/AquaticSimulation/build/CMakeFiles/edit_cache.dir
+/AquaticSimulation/build/CMakeFiles/AquaticSimulation.dir

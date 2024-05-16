@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/AquaticSimulation/src/AquaticAnimal.cpp
+
+/AquaticSimulation/src/AquaticEnvironment.cpp
+
+/AquaticSimulation/src/GeneticAlgorithm.cpp
+
+/AquaticSimulation/src/Point.cpp
+
+/AquaticSimulation/src/main.cpp
+
