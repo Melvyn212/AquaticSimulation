@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Créer le renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
     if (!renderer) {
         std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
         SDL_DestroyWindow(window);
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
         }
 
         // Effacer l'écran
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 10, 10, 255, 125);
         SDL_RenderClear(renderer);
 
         // Dessiner l'environnement

@@ -3,6 +3,8 @@
 CODE_PATH="/home/hw8172/Bureau/Wrkspc/pomme/AquaticSimulation"
 DOCKER_IMAGE="melvyn212/aquatic_simulation:latest"
 
+export DISPLAY=:0
+
 docker run --rm \
 --network host  \
 -v "${CODE_PATH}:/AquaticSimulation" \

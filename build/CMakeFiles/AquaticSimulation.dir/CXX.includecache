@@ -16,11 +16,11 @@ SDL2/SDL.h
 AquaticAnimal.hpp
 /AquaticSimulation/include/AquaticAnimal.hpp
 
-/AquaticSimulation/src/AquaticEnvironment.cpp
+/AquaticSimulation/src/main.cpp
+SDL2/SDL.h
+-
+iostream
+-
 ../include/AquaticEnvironment.hpp
 /AquaticSimulation/include/AquaticEnvironment.hpp
-algorithm
--
-cstdlib
--
 
