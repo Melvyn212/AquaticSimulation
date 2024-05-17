@@ -6,13 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/AquaticSimulation/src/AquaticAnimal.cpp
+/AquaticSimulation/include/AquaticAnimal.hpp
+
+/AquaticSimulation/include/AquaticEnvironment.hpp
+vector
+-
+SDL2/SDL.h
+-
+AquaticAnimal.hpp
+/AquaticSimulation/include/AquaticAnimal.hpp
 
 /AquaticSimulation/src/AquaticEnvironment.cpp
-
-/AquaticSimulation/src/GeneticAlgorithm.cpp
-
-/AquaticSimulation/src/Point.cpp
-
-/AquaticSimulation/src/main.cpp
+../include/AquaticEnvironment.hpp
+/AquaticSimulation/include/AquaticEnvironment.hpp
+algorithm
+-
+cstdlib
+-
 
