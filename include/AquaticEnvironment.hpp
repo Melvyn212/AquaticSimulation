@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <SDL2/SDL.h>
-#include "AquaticAnimal.hpp"
 
 class AquaticEnvironment {
 public:

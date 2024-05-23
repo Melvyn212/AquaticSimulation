@@ -3,15 +3,15 @@
 
 CMakeFiles/AquaticSimulation.dir/src/AquaticAnimal.cpp.o: ../src/AquaticAnimal.cpp
 
-CMakeFiles/AquaticSimulation.dir/src/AquaticEnvironment.cpp.o: ../include/AquaticAnimal.hpp
 CMakeFiles/AquaticSimulation.dir/src/AquaticEnvironment.cpp.o: ../include/AquaticEnvironment.hpp
 CMakeFiles/AquaticSimulation.dir/src/AquaticEnvironment.cpp.o: ../src/AquaticEnvironment.cpp
 
 CMakeFiles/AquaticSimulation.dir/src/GeneticAlgorithm.cpp.o: ../src/GeneticAlgorithm.cpp
 
+CMakeFiles/AquaticSimulation.dir/src/Point.cpp.o: ../include/Point.hpp
 CMakeFiles/AquaticSimulation.dir/src/Point.cpp.o: ../src/Point.cpp
 
-CMakeFiles/AquaticSimulation.dir/src/main.cpp.o: ../include/AquaticAnimal.hpp
 CMakeFiles/AquaticSimulation.dir/src/main.cpp.o: ../include/AquaticEnvironment.hpp
+CMakeFiles/AquaticSimulation.dir/src/main.cpp.o: ../include/Point.hpp
 CMakeFiles/AquaticSimulation.dir/src/main.cpp.o: ../src/main.cpp
 
