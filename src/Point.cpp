@@ -2,6 +2,7 @@
 #include <cmath>
 #include "../include/Point.hpp"
 
+
 // Fonction pour dessiner un point paramétrable
 void drawPoint(SDL_Renderer* renderer, const Point& point) {
     // Définir la couleur avec l'opacité
@@ -45,4 +46,51 @@ void drawPointsAndConnections(SDL_Renderer* renderer, const std::vector<Point>& 
 
     // Afficher le rendu
     SDL_RenderPresent(renderer);
+}
+
+/// Fonction pour mettre à jour les positions des points en fonction des forces exercées par les connexions
+void updatePoints(std::vector<Point>& points, const std::vector<Connection>& connections, float dt, int window_width, int window_height) {
+    // Calcul des forces exercées par les connexions
+    for (const Connection& connection : connections) {
+        Point& p1 = points[connection.start];
+        Point& p2 = points[connection.end];
+
+        float dx = p2.x - p1.x;
+        float dy = p2.y - p1.y;
+        float distance = std::sqrt(dx * dx + dy * dy);
+        float forceMagnitude = connection.stiffness * (distance - connection.rest_length);
+
+        float fx = forceMagnitude * dx / distance;
+        float fy = forceMagnitude * dy / distance;
+
+        // Appliquer les forces (troisième loi de Newton)
+        p1.vx += fx / p1.mass * dt;
+        p1.vy += fy / p1.mass * dt;
+        p2.vx -= fx / p2.mass * dt;
+        p2.vy -= fy / p2.mass * dt;
+    }
+
+    // Mettre à jour les positions des points
+    for (Point& point : points) {
+        point.x += point.vx * dt;
+        point.y += point.vy * dt;
+
+        // Gérer les collisions avec les bords de la fenêtre
+        if (point.x - point.radius < 0) {
+            point.x = point.radius;
+            point.vx = -point.vx;
+        }
+        if (point.x + point.radius > window_width) {
+            point.x = window_width - point.radius;
+            point.vx = -point.vx;
+        }
+        if (point.y - point.radius < 0) {
+            point.y = point.radius;
+            point.vy = -point.vy;
+        }
+        if (point.y + point.radius > window_height) {
+            point.y = window_height - point.radius;
+            point.vy = -point.vy;
+        }
+    }
 }

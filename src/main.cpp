@@ -6,7 +6,7 @@
 
 #include<unistd.h>
 
-#define FPS 60
+#define FPS float(60)
 
 int main(int argc, char* argv[]) {
     // Initialiser SDL2
@@ -41,24 +41,23 @@ int main(int argc, char* argv[]) {
 
     // Initialisation des points
     std::vector<Point> points = {
-        {100, 100, 10, {255, 0, 0, 255}, 128},
-        {200, 150, 10, {0, 255, 0, 255}, 128},
-        {300, 100, 10, {0, 0, 255, 255}, 128},
-        {400, 150, 10, {255, 255, 0, 255}, 128}
+        {100, 100, 20, 30, 1, 10, {255, 0, 0, 255}, 128},
+        {200, 150, -15, 20, 1, 10, {0, 255, 0, 255}, 128},
+        {300, 100, 25, -10, 1, 10, {0, 0, 255, 255}, 128},
+        {400, 150, -20, -15, 1, 10, {255, 255, 0, 255}, 128}
     };
-
-        std::vector<Connection> connections = {
-        {0, 1},
-        {1, 3},
-        {1, 2},
-
+    // Initialisation des connexions
+    std::vector<Connection> connections = {
+        {0, 1, 100.0f, 100},
+        {1, 2, 100.0f, 100.1},
+        {2, 3, 100.0f, 20000.1},
     };
 
 
     // Boucle principale
     bool quit = false;
     SDL_Event e;
-
+    float dt = 1/FPS; // Intervalle de temps (environ 60 FPS)
     int w;
     int h;
     while (!quit) {
@@ -74,17 +73,13 @@ int main(int argc, char* argv[]) {
 
 
                 
-        // Effacer l'écran
-        SDL_SetRenderDrawColor(renderer, 255, 255,255 ,255);
-        SDL_RenderClear(renderer);
+        // Mettre à jour les positions des points en fonction des forces exercées par les connexions
+        updatePoints(points, connections, dt,w,h);
+
         // Dessiner les points et les lignes les reliant
         drawPointsAndConnections(renderer, points, connections);
 
-        // Afficher le rendu
-        SDL_RenderPresent(renderer);
 
-        // Attendre un peu pour contrôler la vitesse du point
-        SDL_Delay(1000/FPS); // Environ 60 FPS;
     }
 
     // Nettoyer et fermer SDL2
