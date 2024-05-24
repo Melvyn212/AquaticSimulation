@@ -1,9 +1,8 @@
 #!/bin/bash
 #CODE_PATH="/home/adehundeag/wrkspace/AquaticSimulation"
-
 CODE_PATH="/home/hw8172/Bureau/Wrkspc/pomme/AquaticSimulation"
 
-CODE_PATH="/home/adehundeag/wrkspace/AquaticSimulation"
+export DISPLAY=:0
 
 DOCKER_IMAGE="melvyn212/aquatic_simulation:latest"
 

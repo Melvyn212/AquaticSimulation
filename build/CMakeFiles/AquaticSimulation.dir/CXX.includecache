@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/AquaticSimulation/include/AquaticEnvironment.hpp
-vector
--
-SDL2/SDL.h
--
-
 /AquaticSimulation/include/Point.hpp
 SDL2/SDL.h
 -
@@ -25,16 +19,4 @@ cmath
 -
 ../include/Point.hpp
 /AquaticSimulation/include/Point.hpp
-
-/AquaticSimulation/src/main.cpp
-SDL2/SDL.h
--
-iostream
--
-../include/AquaticEnvironment.hpp
-/AquaticSimulation/include/AquaticEnvironment.hpp
-../include/Point.hpp
-/AquaticSimulation/include/Point.hpp
-unistd.h
--
 

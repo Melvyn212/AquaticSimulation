@@ -33,6 +33,5 @@ void AquaticEnvironment::simulate(int generations, SDL_Window* window, SDL_Rende
         //draw(renderer);
         SDL_RenderPresent(renderer);
         //evolve();
-        SDL_Delay(500); // Attendre pour visualiser chaque génération
     }
 }

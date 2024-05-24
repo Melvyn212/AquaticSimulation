@@ -34,24 +34,19 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Initialiser l'environnement aquatique
-    int width = 800;
-    int height = 600;
-    int num_animals = 10;
+ // Initialisation des points avec un coefficient de traînée
+    std::vector<Point> points;
+    points.push_back(Point(400, 300)); // Tête
+    points.push_back(Point(350,250)); // Membre 1
+    points.push_back(Point(450, 250)); // Membre 2
+   
 
-      // Initialisation des points avec un coefficient de traînée
-    std::vector<Point> points = {
-        {100, 100, 20, 30, 1, 0.1f, 10, {255, 0, 0, 255}, 128},
-        {200, 150, -15, 20, 1, 0.1f, 10, {0, 255, 0, 255}, 128},
-        {300, 100, 25, -10, 1, 0.1f, 10, {0, 0, 255, 255}, 128},
-    };
-
-    // Initialisation des connexions avec des phases pour l'oscillation
+    // Initialisation des connexions fixes
     std::vector<Connection> connections = {
-        {0, 1, 100.0f, 5.0f, 0.5f},
-        {1, 2, 100.0f, 10.0f, 0.5f},
-    };
+        {0, 1, 50.0f, 1.0f},
+        {0, 2, 50.0f, 1.0f},
 
+    };
 
     // Boucle principale
     bool quit = false;
@@ -67,6 +62,10 @@ int main(int argc, char* argv[]) {
             }
         }
 
+            // Effacer l'écran
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 100);
+        SDL_RenderClear(renderer);
+
 
         SDL_GetWindowSize(window,&w,&h);
 
@@ -77,6 +76,8 @@ int main(int argc, char* argv[]) {
 
         // Dessiner les points et les lignes les reliant
         drawPointsAndConnections(renderer, points, connections);
+
+        SDL_Delay(1000/FPS); // Environ 60 FPS
 
 
     }
