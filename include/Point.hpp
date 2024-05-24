@@ -4,12 +4,12 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-
 // Structure pour stocker les paramètres du point
 struct Point {
     float x, y;
     float vx, vy;
     float mass;
+    float drag; // Coefficient de traînée
     int radius;
     SDL_Color color;
     Uint8 opacity;
@@ -21,6 +21,7 @@ struct Connection {
     int end;   // Index du point de fin
     float rest_length; // Longueur de repos du ressort
     float stiffness;   // Raideur du ressort
+    float phase;       // Phase pour l'oscillation
 };
 
 // Fonction pour dessiner un point paramétrable
@@ -32,8 +33,8 @@ void drawConnections(SDL_Renderer* renderer, const std::vector<Point>& points, c
 // Fonction pour dessiner des points et les lignes les reliant
 void drawPointsAndConnections(SDL_Renderer* renderer, const std::vector<Point>& points, const std::vector<Connection>& connections);
 
-// Fonction pour mettre à jour les positions des points en fonction des forces exercées par les connexions
-void updatePoints(std::vector<Point>& points, const std::vector<Connection>& connections, float dt, int window_width, int window_height);
+// Fonction pour mettre à jour les positions des points en fonction des forces exercées par les connexions et la traînée
+void updatePoints(std::vector<Point>& points, std::vector<Connection>& connections, float dt, int window_width, int window_height);
 
 
 #endif // POINT_H

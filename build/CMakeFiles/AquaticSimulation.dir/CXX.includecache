@@ -18,6 +18,14 @@ SDL2/SDL.h
 vector
 -
 
+/AquaticSimulation/src/Point.cpp
+SDL2/SDL.h
+-
+cmath
+-
+../include/Point.hpp
+/AquaticSimulation/include/Point.hpp
+
 /AquaticSimulation/src/main.cpp
 SDL2/SDL.h
 -

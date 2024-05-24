@@ -39,18 +39,17 @@ int main(int argc, char* argv[]) {
     int height = 600;
     int num_animals = 10;
 
-    // Initialisation des points
+      // Initialisation des points avec un coefficient de traînée
     std::vector<Point> points = {
-        {100, 100, 20, 30, 1, 10, {255, 0, 0, 255}, 128},
-        {200, 150, -15, 20, 1, 10, {0, 255, 0, 255}, 128},
-        {300, 100, 25, -10, 1, 10, {0, 0, 255, 255}, 128},
-        {400, 150, -20, -15, 1, 10, {255, 255, 0, 255}, 128}
+        {100, 100, 20, 30, 1, 0.1f, 10, {255, 0, 0, 255}, 128},
+        {200, 150, -15, 20, 1, 0.1f, 10, {0, 255, 0, 255}, 128},
+        {300, 100, 25, -10, 1, 0.1f, 10, {0, 0, 255, 255}, 128},
     };
-    // Initialisation des connexions
+
+    // Initialisation des connexions avec des phases pour l'oscillation
     std::vector<Connection> connections = {
-        {0, 1, 100.0f, 100},
-        {1, 2, 100.0f, 100.1},
-        {2, 3, 100.0f, 20000.1},
+        {0, 1, 100.0f, 5.0f, 0.5f},
+        {1, 2, 100.0f, 10.0f, 0.5f},
     };
 
 
