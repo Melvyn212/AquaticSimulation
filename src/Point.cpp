@@ -48,9 +48,8 @@ void drawPointsAndConnections(SDL_Renderer* renderer, const std::vector<Point>& 
     SDL_RenderPresent(renderer);
 }
 
-/// Fonction pour mettre à jour les positions des points en fonction des forces exercées par les connexions
-void updatePoints(std::vector<Point>& points, const std::vector<Connection>& connections, float dt, int window_width, int window_height) {
-    // Calcul des forces exercées par les connexions
+// Fonction pour appliquer les contraintes de distance fixe
+void applyConstraints(std::vector<Point>& points, const std::vector<Connection>& connections) {
     for (const Connection& connection : connections) {
         Point& p1 = points[connection.start];
         Point& p2 = points[connection.end];
@@ -58,20 +57,35 @@ void updatePoints(std::vector<Point>& points, const std::vector<Connection>& con
         float dx = p2.x - p1.x;
         float dy = p2.y - p1.y;
         float distance = std::sqrt(dx * dx + dy * dy);
-        float forceMagnitude = connection.stiffness * (distance - connection.rest_length);
+        float difference = distance - connection.rest_length;
 
-        float fx = forceMagnitude * dx / distance;
-        float fy = forceMagnitude * dy / distance;
+        if (distance != 0) {
+            float correction = difference / distance / 2.0f;
+            float correctionX = dx * correction;
+            float correctionY = dy * correction;
 
-        // Appliquer les forces (troisième loi de Newton)
-        p1.vx += fx / p1.mass * dt;
-        p1.vy += fy / p1.mass * dt;
-        p2.vx -= fx / p2.mass * dt;
-        p2.vy -= fy / p2.mass * dt;
+            p1.x += correctionX;
+            p1.y += correctionY;
+            p2.x -= correctionX;
+            p2.y -= correctionY;
+        }
+    }
+}
+
+// Fonction pour mettre à jour les positions des points en fonction des forces exercées par les connexions et la traînée
+void updatePoints(std::vector<Point>& points, std::vector<Connection>& connections, float dt, int window_width, int window_height) {
+    // Osciller la longueur de repos des connexions
+    for (Connection& connection : connections) {
+        connection.phase += dt;
     }
 
     // Mettre à jour les positions des points
     for (Point& point : points) {
+        // Appliquer la force de traînée
+        point.vx -= point.vx * point.drag * dt;
+        point.vy -= point.vy * point.drag * dt;
+
+        // Mettre à jour la position
         point.x += point.vx * dt;
         point.y += point.vy * dt;
 
@@ -92,5 +106,10 @@ void updatePoints(std::vector<Point>& points, const std::vector<Connection>& con
             point.y = window_height - point.radius;
             point.vy = -point.vy;
         }
+    }
+
+    // Appliquer les contraintes de distance fixe
+    for (int i = 0; i < 10; ++i) { // Répéter plusieurs fois pour assurer la convergence
+        applyConstraints(points, connections);
     }
 }
